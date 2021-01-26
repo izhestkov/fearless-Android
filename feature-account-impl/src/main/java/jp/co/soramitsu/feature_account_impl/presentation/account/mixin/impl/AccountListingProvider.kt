@@ -25,7 +25,7 @@ class AccountListingProvider(
     private val addressIconGenerator: AddressIconGenerator
 ) : AccountListingMixin {
 
-    override fun accountListingFlow() = getGroupedAccounts()
+    override suspend fun accountListingFlow() = getGroupedAccounts()
         .combine(selectedAccountFlow()) { groupedAccounts, selected ->
             AccountListing(groupedAccounts, selected)
         }
@@ -33,7 +33,7 @@ class AccountListingProvider(
     override fun selectedAccountFlow() = accountInteractor.selectedAccountFlow()
         .mapLatest { transformAccount(it) }
 
-    private fun getGroupedAccounts() = accountInteractor.groupedAccountsFlow()
+    private suspend fun getGroupedAccounts() = accountInteractor.groupedAccountsFlow()
         .mapLatest { transformToModels(it) }
         .flowOn(Dispatchers.Default)
 

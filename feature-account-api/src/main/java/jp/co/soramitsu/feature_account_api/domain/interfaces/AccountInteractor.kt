@@ -71,7 +71,7 @@ interface AccountInteractor {
 
     suspend fun getSelectedNode(): Node
 
-    fun groupedAccountsFlow(): Flow<List<Any>>
+    suspend fun groupedAccountsFlow(): Flow<List<Any>>
 
     suspend fun selectAccount(address: String)
 

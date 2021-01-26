@@ -129,10 +129,12 @@ class AccountRepositoryImpl(
         switchToAccount(account)
     }
 
-    override fun accountsFlow(): Flow<List<Account>> {
-        return accountDao.accountsFlow()
-            .mapList(::mapAccountLocalToAccount)
-            .flowOn(Dispatchers.Default)
+    override suspend fun accountsFlow(): Flow<List<Account>> {
+        return withContext(Dispatchers.IO) {
+            accountDao.accountsFlow()
+                .mapList(::mapAccountLocalToAccount)
+                .flowOn(Dispatchers.Default)
+        }
     }
 
     override suspend fun getAccount(address: String): Account {

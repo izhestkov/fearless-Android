@@ -9,5 +9,5 @@ interface AccountListingMixin {
 
     fun selectedAccountFlow(): Flow<AccountModel>
 
-    fun accountListingFlow(): Flow<AccountListing>
+    suspend fun accountListingFlow(): Flow<AccountListing>
 }

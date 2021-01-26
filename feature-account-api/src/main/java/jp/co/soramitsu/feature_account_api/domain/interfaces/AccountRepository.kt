@@ -43,7 +43,7 @@ interface AccountRepository {
         networkType: Node.NetworkType
     )
 
-    fun accountsFlow(): Flow<List<Account>>
+    suspend fun accountsFlow(): Flow<List<Account>>
 
     suspend fun getAccount(address: String): Account
 

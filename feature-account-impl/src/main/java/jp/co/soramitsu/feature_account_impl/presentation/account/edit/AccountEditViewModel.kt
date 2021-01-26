@@ -2,6 +2,7 @@ package jp.co.soramitsu.feature_account_impl.presentation.account.edit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import jp.co.soramitsu.common.base.BaseViewModel
 import jp.co.soramitsu.common.utils.Event
@@ -28,7 +29,9 @@ class EditAccountsViewModel(
     private val _unsyncedSwapLiveData = MutableLiveData<UnsyncedSwapPayload?>()
     val unsyncedSwapLiveData: LiveData<UnsyncedSwapPayload?> = _unsyncedSwapLiveData
 
-    val accountListingLiveData = accountListingMixin.accountListingFlow().asLiveData()
+    val accountListingLiveData = liveData {
+        emitSource(accountListingMixin.accountListingFlow().asLiveData())
+    }
 
     fun doneClicked() {
         accountRouter.back()

@@ -140,7 +140,7 @@ class AccountInteractorImpl(
 
     override suspend fun getSelectedNode() = accountRepository.getSelectedNode()
 
-    override fun groupedAccountsFlow(): Flow<List<Any>> {
+    override suspend fun groupedAccountsFlow(): Flow<List<Any>> {
         return accountRepository.accountsFlow()
             .map(::mergeAccountsWithNetworks)
     }

@@ -1,4 +1,4 @@
-package jp.co.soramitsu.feature_wallet_impl.presentation.balance.list
+ package jp.co.soramitsu.feature_wallet_impl.presentation.balance.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

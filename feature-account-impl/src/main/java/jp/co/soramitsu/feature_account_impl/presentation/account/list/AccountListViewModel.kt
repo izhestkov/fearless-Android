@@ -1,5 +1,6 @@
 package jp.co.soramitsu.feature_account_impl.presentation.account.list
 
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import jp.co.soramitsu.common.base.BaseViewModel
 import jp.co.soramitsu.feature_account_api.domain.interfaces.AccountInteractor
@@ -14,7 +15,9 @@ class AccountListViewModel(
     accountListingMixin: AccountListingMixin
 ) : BaseViewModel() {
 
-    val accountListingLiveData = accountListingMixin.accountListingFlow().asLiveData()
+    val accountListingLiveData = liveData {
+        emitSource(accountListingMixin.accountListingFlow().asLiveData())
+    }
 
     val selectedAccountLiveData = accountListingMixin.selectedAccountFlow().asLiveData()
 
