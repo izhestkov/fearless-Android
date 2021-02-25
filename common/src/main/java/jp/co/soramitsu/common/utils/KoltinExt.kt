@@ -14,6 +14,10 @@ inline fun <T> List<T>.sumBy(extractor: (T) -> BigInteger) = fold(BigInteger.ZER
     acc + extractor(element)
 }
 
+fun <K, V> Map<K, V>.reversed() = HashMap<V, K>().also { newMap ->
+    entries.forEach { newMap[it.value] = it.key }
+}
+
 fun <T> Result<T>.requireException() = exceptionOrNull()!!
 
 fun <T> Result<T>.requireValue() = getOrThrow()!!

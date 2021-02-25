@@ -35,6 +35,8 @@ class RecommendationSettingsProvider(
 
     fun observeRecommendationSettings(): Flow<RecommendationSettings> = settingsFlow
 
+    fun currentRecommendationSettings() = settingsFlow.value
+
     fun getAllFilters(): List<RecommendationFilter> = allFilters
 
     fun getAllSortings(): List<RecommendationSorting> = allSortings

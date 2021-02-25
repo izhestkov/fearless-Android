@@ -1,6 +1,8 @@
 package jp.co.soramitsu.common.utils
 
+import android.widget.CompoundButton
 import android.widget.EditText
+import android.widget.RadioGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -129,17 +131,43 @@ fun <FROM, TO> LiveData<FROM>.switchMap(
 fun <T> LiveData<T>.distinctUntilChanged() = Transformations.distinctUntilChanged(this)
 
 fun EditText.bindTo(liveData: MutableLiveData<String>, lifecycleOwner: LifecycleOwner) {
-    onTextChanged {
-        if (liveData.value != it) {
-            liveData.value = it
-        }
-    }
+    onTextChanged(liveData::setIfChanged)
 
-    liveData.observe(lifecycleOwner, Observer {
+    liveData.observe(lifecycleOwner) {
         if (it != text.toString()) {
             setText(it)
         }
-    })
+    }
+}
+
+fun CompoundButton.bindTo(liveData: MutableLiveData<Boolean>, lifecycleOwner: LifecycleOwner) {
+    setOnCheckedChangeListener { _, isChecked ->
+        liveData.setIfChanged(isChecked)
+    }
+
+    liveData.observe(lifecycleOwner) {
+        if (it != isChecked) {
+            isChecked = it
+        }
+    }
+}
+
+fun RadioGroup.bindTo(liveData: MutableLiveData<Int>, lifecycleOwner: LifecycleOwner) {
+    setOnCheckedChangeListener { _, checkedId ->
+        liveData.setIfChanged(checkedId)
+    }
+
+    liveData.observe(lifecycleOwner) {
+        if (it != checkedRadioButtonId) {
+            check(it)
+        }
+    }
+}
+
+fun <T> MutableLiveData<T>.setIfChanged(newValue: T) {
+    if (value != newValue) {
+        value = newValue
+    }
 }
 
 fun LiveData<String>.isNotEmpty() = !value.isNullOrEmpty()

@@ -26,6 +26,7 @@
         <attr name="textRight" format="string" />
         <attr name="homeButtonIcon" format="reference|color" />
         <attr name="homeButtonVisible" format="boolean" />
+        <attr name="textRightColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="GlassyButton">

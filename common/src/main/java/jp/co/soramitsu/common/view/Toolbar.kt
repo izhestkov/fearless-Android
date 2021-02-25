@@ -1,6 +1,7 @@
 package jp.co.soramitsu.common.view
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
@@ -34,8 +35,11 @@ class Toolbar @JvmOverloads constructor(
             val rightIcon = typedArray.getDrawable(R.styleable.Toolbar_iconRight)
             rightIcon?.let { setRightIconDrawable(it) }
 
-            val action = typedArray.getString(R.styleable.Toolbar_textRight)
-            action?.let { setTextRight(it) }
+            val rightText = typedArray.getString(R.styleable.Toolbar_textRight)
+            rightText?.let { setTextRight(it) }
+
+            val rightTextColor = typedArray.getColor(R.styleable.Toolbar_textRightColor, Color.WHITE)
+            setTextColorRight(rightTextColor)
 
             val homeButtonIcon = typedArray.getDrawable(R.styleable.Toolbar_homeButtonIcon)
             homeButtonIcon?.let { setHomeButtonIcon(it) }
@@ -68,6 +72,10 @@ class Toolbar @JvmOverloads constructor(
 
     fun hideHomeButton() {
         backImg.makeGone()
+    }
+
+    fun setTextColorRight(color: Int) {
+        rightText.setTextColor(color)
     }
 
     fun setHomeButtonListener(listener: (View) -> Unit) {

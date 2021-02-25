@@ -9,6 +9,7 @@ import jp.co.soramitsu.feature_account_api.di.AccountFeatureApi
 import jp.co.soramitsu.feature_staking_api.di.StakingFeatureApi
 import jp.co.soramitsu.feature_staking_impl.presentation.StakingRouter
 import jp.co.soramitsu.feature_staking_impl.presentation.validators.recommended.di.RecommendedValidatorsComponent
+import jp.co.soramitsu.feature_staking_impl.presentation.validators.settings.di.CustomValidatorsSettingsComponent
 import jp.co.soramitsu.runtime.di.RuntimeApi
 
 @Component(
@@ -24,6 +25,8 @@ import jp.co.soramitsu.runtime.di.RuntimeApi
 interface StakingFeatureComponent : StakingFeatureApi {
 
     fun recommendedValidatorsComponentFactory(): RecommendedValidatorsComponent.Factory
+
+    fun customValidatorsSettingsComponentFactory(): CustomValidatorsSettingsComponent.Factory
 
     @Component.Factory
     interface Factory {

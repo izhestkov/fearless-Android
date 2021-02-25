@@ -7,7 +7,7 @@ import java.util.Comparator
 typealias RecommendationFilter = Filter<Validator>
 typealias RecommendationSorting = Comparator<Validator>
 
-class RecommendationSettings(
+data class RecommendationSettings(
     val filters: List<RecommendationFilter>,
     val sorting: RecommendationSorting,
     val limit: Int? = null

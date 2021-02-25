@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_reset">Reset</string>
+    <string name="staking_custom_validators_settings_filters">Filters</string>
+    <string name="staking_custom_validators_settings_filters_identity">Identity</string>
+    <string name="staking_custom_validators_settings_filters_slashes">No slashes</string>
+    <string name="staking_custom_validators_settings_filters_oversubscribed">Not oversubscribed</string>
+    <string name="staking_custom_validators_settings_sort_title">Sort</string>
+    <string name="staking_custom_validators_settings_sort_apy">Most profitable at the top</string>
+    <string name="staking_custom_validators_settings_sort_stake">Biggest stake at the top</string>
+    <string name="staking_custom_validators_settings_sort_commission">Biggest commission at the top</string>
+    <string name="staking_custom_validators_settings_apply">Show</string>
+</resources>
